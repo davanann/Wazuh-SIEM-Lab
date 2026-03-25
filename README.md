@@ -14,7 +14,7 @@ The lab environment was virtualized on an Arch Linux host using **Virt-Manager (
 
 ---
 
-## 🛠 Implementation Steps
+## Implementation Steps
 
 ### 1. Environment Virtualization (Arch Host)
 * **Provisioned Resources:** Allocated 4GB RAM/2 vCPUs for Ubuntu and 8GB RAM/4 vCPUs for Windows Server using `virt-manager`.
