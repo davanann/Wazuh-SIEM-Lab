@@ -10,7 +10,7 @@ The lab utilizes a Type-2 hypervisor setup to simulate a cross-platform enterpri
 * **Hypervisor:** KVM/QEMU via Virtual Machine Manager (virt-manager)
 * **SIEM Manager:** Ubuntu Server 22.04 (Wazuh Stack)
 * **Endpoint Agent:** Windows Server 2022
-* **Internal Network:** 192.168.122.0/24
+* **Internal Network:** 192.168.122.0/24 (Private Virtual Bridge)
 
 ---
 
@@ -24,7 +24,7 @@ I performed a centralized installation of the Wazuh indexer, server, and dashboa
 
 ### 3. Windows Agent Integration
 The agent was deployed via PowerShell to simulate a remote installation.
-* **Command:** `msiexec.exe /i wazuh-agent.msi /q WAZUH_MANAGER='192.168.122.63' WAZUH_AGENT_NAME='WINDOWS2022'`
+* **Command:** `msiexec.exe /i wazuh-agent.msi /q WAZUH_MANAGER='<MANAGER_IP>' WAZUH_AGENT_NAME='WINDOWS2022'`
 * **Service Control:** Managed the agent lifecycle using `Start-Service Wazuh` and `Stop-Service Wazuh` to verify manager-side heartbeat detection.
 
 ### 4. Telemetry Debugging and Log Aggregation
@@ -57,11 +57,23 @@ To verify the data pipeline, I enabled the `logall` and `logall_json` directives
 ---
 
 ## Proof of Concept
-*Note: Internal IP addresses have been redacted in accordance with security best practices.*
+*Note: Internal IP addresses and sensitive identifiers have been redacted/blurred in the following figures.*
 
-1. **Manager Status:** [Screenshot of Virt-Manager showing Ubuntu and Windows VMs running]
-2. **Active Agent:** [Screenshot of Wazuh Dashboard showing Windows Agent as Active]
-3. **Telemetry Stream:** [Screenshot of Ubuntu terminal showing raw JSON logs from the Windows agent]
+### Figure 1: Virtualized Infrastructure
+![Hypervisor Setup](img/ss1.png)
+*Both Ubuntu and Windows Server 2022 operating systems running simultaneously on the Arch Linux host via Virt-Manager.*
+
+### Figure 2: Connectivity Verification
+![Agent Enrollment](img/ss2.png)
+*Windows PowerShell interface alongside the Wazuh Dashboard, showing the 'Active' status green indicator for the registered endpoint.*
+
+### Figure 3: Manager-Side Validation
+![Ubuntu Endpoint Summary](img/ss3.png)
+*The Wazuh Dashboard on Ubuntu displaying the active endpoint summary while the Windows Server Manager is active in the background.*
+
+### Figure 4: Synchronized Telemetry
+![Windows Update Dashboard](img/ss4.png)
+*Active communication confirmed on the Windows host, showing the corresponding green connectivity status within the Wazuh Manager dashboard.*
 
 ---
 
