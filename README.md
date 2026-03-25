@@ -48,7 +48,7 @@ To verify the data pipeline, I enabled the `logall` and `logall_json` directives
 
 ---
 
-## Key Results (XYZ Format)
+## Key Results
 
 * **Cross-Platform Integration:** Established a functional SIEM pipeline **as measured by** an "Active" agent status on the Ubuntu Dashboard, **by doing** advanced network bridging and port configuration on an Arch Linux host.
 * **Log Ingestion Validation:** Confirmed 100% telemetry delivery **as measured by** raw log analysis in the `archives.json` file, **by doing** manual configuration of manager-side global logging parameters.
